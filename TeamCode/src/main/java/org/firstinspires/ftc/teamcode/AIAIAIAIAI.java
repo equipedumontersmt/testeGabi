@@ -6,13 +6,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp
-public class testegabioficial extends LinearOpMode {
+public class AIAIAIAIAI extends LinearOpMode {
 
     DcMotor direitaTras;
     DcMotor direitaFrente;
     DcMotor esquerdaFrente;
     DcMotor esquerdaTras;
     public static int poder = 1;
+    DcMotor encoderLeft;
+    DcMotor encoderRight;
+    DcMotor encoderAux;
 
     @Override
     public void runOpMode() {
@@ -21,6 +24,10 @@ public class testegabioficial extends LinearOpMode {
         direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente"); //pedrodivo
         esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente"); //gabidiva
         esquerdaTras = hardwareMap.get(DcMotor.class, "esquerdaTras");  //felipaoooo
+
+        encoderLeft = esquerdaTras;
+        encoderRight = direitaFrente;
+        encoderAux = direitaTras;
 
         direitaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
 

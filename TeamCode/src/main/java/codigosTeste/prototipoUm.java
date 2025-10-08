@@ -51,8 +51,8 @@ public class prototipoUm extends LinearOpMode {
         esquerdaTras.setDirection(DcMotorSimple.Direction.FORWARD);
         direitaTras.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        rodaUm.setDirection(DcMotorSimple.Direction.FORWARD);
-        rodaDois.setDirection(DcMotorSimple.Direction.FORWARD);
+        rodaUm.setDirection(DcMotorSimple.Direction.REVERSE);
+        rodaDois.setDirection(DcMotorSimple.Direction.REVERSE);
 
         servoUm.setDirection(DcMotorSimple.Direction.REVERSE);
         servoDois.setDirection(DcMotorSimple.Direction.REVERSE);
