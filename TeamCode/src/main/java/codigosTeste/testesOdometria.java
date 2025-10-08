@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package codigosTeste;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp
-public class AIAIAIAIAI extends LinearOpMode {
+public class testesOdometria extends LinearOpMode {
 
     DcMotor direitaTras;
     DcMotor direitaFrente;

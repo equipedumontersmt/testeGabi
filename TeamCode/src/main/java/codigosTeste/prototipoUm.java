@@ -22,6 +22,10 @@ public class prototipoUm extends LinearOpMode {
     CRServo servoTres;
     CRServo servoQuatro;
 
+    DcMotor encoderLeft;
+    DcMotor encoderRight;
+    DcMotor encoderAux;
+
     @Override
     public void runOpMode() {
 
@@ -29,6 +33,10 @@ public class prototipoUm extends LinearOpMode {
         direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente");
         esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente");
         esquerdaTras= hardwareMap.get(DcMotor.class, "esquerdaTras");
+
+        encoderLeft = esquerdaTras;
+        encoderRight = direitaFrente;
+        encoderAux = direitaTras;
 
         rodaUm = hardwareMap.get(DcMotor.class, "rodaUm");
         rodaDois = hardwareMap.get(DcMotor.class, "rodaDois");
@@ -46,10 +54,10 @@ public class prototipoUm extends LinearOpMode {
         rodaUm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rodaDois.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        esquerdaFrente.setDirection(DcMotorSimple.Direction.FORWARD);
+        esquerdaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
         direitaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
         esquerdaTras.setDirection(DcMotorSimple.Direction.FORWARD);
-        direitaTras.setDirection(DcMotorSimple.Direction.FORWARD);
+        direitaTras.setDirection(DcMotorSimple.Direction.REVERSE);
 
         rodaUm.setDirection(DcMotorSimple.Direction.REVERSE);
         rodaDois.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -66,6 +74,11 @@ public class prototipoUm extends LinearOpMode {
             direitaFrente.setPower(gamepad1.left_stick_y + (gamepad1.left_stick_x) + (gamepad1.right_trigger) + (-gamepad1.left_trigger));
             esquerdaFrente.setPower(gamepad1.left_stick_y + (-gamepad1.left_stick_x) + (-gamepad1.right_trigger) + (gamepad1.left_trigger));
             esquerdaTras.setPower(gamepad1.left_stick_y + (-gamepad1.left_stick_x) + (gamepad1.right_trigger) + (-gamepad1.left_trigger));
+
+            telemetry.addData("encoder", encoderLeft.getCurrentPosition());
+            telemetry.addData("encoder", encoderRight.getCurrentPosition());
+            telemetry.addData("encoder", encoderAux.getCurrentPosition());
+            telemetry.update();
 
             rodaUm.setPower(1);
             rodaDois.setPower(1);
