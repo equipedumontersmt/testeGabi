@@ -13,6 +13,9 @@ public class prototipoUm extends LinearOpMode {
     DcMotor esquerdaFrente;
     DcMotor esquerdaTras;
 
+    DcMotor rodaUm;
+    DcMotor rodaDois;
+
     CRServo servoUm;
     CRServo servoDois;
     CRServo servoTres;
@@ -29,6 +32,9 @@ public class prototipoUm extends LinearOpMode {
         direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente");
         esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente");
         esquerdaTras= hardwareMap.get(DcMotor.class, "esquerdaTras");
+
+        rodaUm = hardwareMap.get(DcMotor.class, "rodaUm");
+        rodaDois = hardwareMap.get(DcMotor.class, "rodaDois");
 
         encoderLeft = esquerdaTras;
         encoderRight = direitaFrente;
@@ -48,6 +54,9 @@ public class prototipoUm extends LinearOpMode {
         direitaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
         esquerdaTras.setDirection(DcMotorSimple.Direction.FORWARD);
         direitaTras.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        rodaUm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rodaDois.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         servoUm.setDirection(DcMotorSimple.Direction.REVERSE);
         servoDois.setDirection(DcMotorSimple.Direction.REVERSE);
