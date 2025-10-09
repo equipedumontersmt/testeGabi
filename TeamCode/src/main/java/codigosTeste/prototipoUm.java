@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class prototipoUm extends LinearOpMode {
@@ -13,9 +12,6 @@ public class prototipoUm extends LinearOpMode {
     DcMotor direitaFrente;
     DcMotor esquerdaFrente;
     DcMotor esquerdaTras;
-
-    DcMotor rodaUm;
-    DcMotor rodaDois;
 
     CRServo servoUm;
     CRServo servoDois;
@@ -38,9 +34,6 @@ public class prototipoUm extends LinearOpMode {
         encoderRight = direitaFrente;
         encoderAux = direitaTras;
 
-        rodaUm = hardwareMap.get(DcMotor.class, "rodaUm");
-        rodaDois = hardwareMap.get(DcMotor.class, "rodaDois");
-
         servoUm = hardwareMap.get(CRServo.class, "servoUm");
         servoDois = hardwareMap.get(CRServo.class, "servoDois");
         servoTres = hardwareMap.get(CRServo.class, "servoTres");
@@ -51,16 +44,10 @@ public class prototipoUm extends LinearOpMode {
         esquerdaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         esquerdaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        rodaUm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rodaDois.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
         esquerdaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
         direitaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
         esquerdaTras.setDirection(DcMotorSimple.Direction.FORWARD);
         direitaTras.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        rodaUm.setDirection(DcMotorSimple.Direction.REVERSE);
-        rodaDois.setDirection(DcMotorSimple.Direction.REVERSE);
 
         servoUm.setDirection(DcMotorSimple.Direction.REVERSE);
         servoDois.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -80,9 +67,6 @@ public class prototipoUm extends LinearOpMode {
             telemetry.addData("encoder", encoderAux.getCurrentPosition());
             telemetry.update();
 
-            rodaUm.setPower(1);
-            rodaDois.setPower(1);
-
             if (gamepad1.a) {
                 servoUm.setPower(1);
                 servoDois.setPower(1);
@@ -94,7 +78,6 @@ public class prototipoUm extends LinearOpMode {
                 servoTres.setPower(0);
                 servoQuatro.setPower(0);
             }
-
         }
     }
 }
