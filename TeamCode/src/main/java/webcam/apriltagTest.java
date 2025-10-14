@@ -1,5 +1,6 @@
 package webcam;
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
 import android.util.Size;
@@ -13,6 +14,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 @TeleOp (name = "apriltagTest", group = "Robot")
+@Config
 public class apriltagTest extends LinearOpMode {
 
     @Override
