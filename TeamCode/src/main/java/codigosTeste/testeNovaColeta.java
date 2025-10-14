@@ -20,9 +20,9 @@ public class testeNovaColeta extends LinearOpMode {
     CRServo heliceDois;
     CRServo heliceTres;
 
-    public static double power = 0.5;
-    public static double powerDois = 0.18;
-    public static double powerTres = 0.5;
+    public static double power = 1;
+    public static double powerDois = 0.3;
+    public static double powerTres = 1;
 
     @Override
     public void runOpMode() {
@@ -47,18 +47,28 @@ public class testeNovaColeta extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
 
-            rodaUm.setPower(-1);
-            rodaDois.setPower(1);
+            if (gamepad1.y) {
+                rodaUm.setPower(-1);
+                rodaDois.setPower(1);
+            }else {
+                rodaUm.setPower(0);
+                rodaDois.setPower(0);
+            }
 
-            if (gamepad1.a) {
+            if (gamepad1.dpad_down) {
                 heliceUm.setPower(power);
+            } else if (gamepad1.dpad_right) {
                 heliceDois.setPower(powerDois);
+            } else if (gamepad1.dpad_up) {
                 heliceTres.setPower(powerTres);
-
+            } else if (gamepad1.a) {
+                heliceUm.setPower(1);
+                heliceDois.setPower(1);
+                heliceTres.setPower(1);
             } else {
-                heliceUm.setPower(0.0);
-                heliceDois.setPower(0.0);
-                heliceTres.setPower(0.0);
+                heliceUm.setPower(0);
+                heliceDois.setPower(0);
+                heliceTres.setPower(0);
             }
 
         }
