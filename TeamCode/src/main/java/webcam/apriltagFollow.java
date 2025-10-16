@@ -12,7 +12,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
-@TeleOp (name = "apriltagFollow", group = "Robot")
+@TeleOp (name = "apriltagFollow", group = "Camera")
 public class apriltagFollow extends LinearOpMode {
 
     @Override

@@ -5,14 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp
+@TeleOp (name = "testesOdometria", group = "Robot")
 public class testesOdometria extends LinearOpMode {
 
     DcMotor direitaTras;
     DcMotor direitaFrente;
     DcMotor esquerdaFrente;
     DcMotor esquerdaTras;
-    public static int poder = 1;
     DcMotor encoderLeft;
     DcMotor encoderRight;
     DcMotor encoderAux;
