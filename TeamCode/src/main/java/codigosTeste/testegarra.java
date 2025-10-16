@@ -2,31 +2,56 @@ package codigosTeste;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 @TeleOp
 public class testegarra extends LinearOpMode {
 
-    DcMotor direitaTras;
-    DcMotor direitaFrente;
+    CRServo servoUm;
+    CRServo servoDois;
+    CRServo servoTres;
+
+    DcMotor rodaUm;
+    DcMotor rodaDois;
     public static int poder = 1;
 
     @Override
     public void runOpMode() {
 
-        direitaTras = hardwareMap.get(DcMotor.class, "direitaTras");
-        direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente");
+        rodaUm = hardwareMap.get(DcMotor.class, "rodaUm");
+        rodaDois = hardwareMap.get(DcMotor.class, "rodaDois");
 
-        direitaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        direitaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        servoUm = hardwareMap.get(CRServo.class, "servoUm");
+        servoDois = hardwareMap.get(CRServo.class, "servoDois");
+        servoTres = hardwareMap.get(CRServo.class, "servoTres");
+
+        rodaUm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rodaDois.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        rodaUm.setDirection(DcMotorSimple.Direction.REVERSE);
+        rodaDois.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        servoUm.setDirection(DcMotorSimple.Direction.FORWARD);
+        servoDois.setDirection(DcMotorSimple.Direction.REVERSE);
+        servoTres.setDirection(DcMotorSimple.Direction.FORWARD);
 
         waitForStart();
-
         while (opModeIsActive()) {
 
-            direitaTras.setPower(gamepad1.left_stick_y);
-            direitaFrente.setPower(gamepad1.left_stick_y);
+            rodaUm.setPower(1);
+            rodaDois.setPower(1);
 
-
+            if (gamepad1.a) {
+                servoUm.setPower(1);
+                servoDois.setPower(0.25);
+                servoTres.setPower(1);
+            } else {
+                servoUm.setPower(0);
+                servoDois.setPower(0);
+                servoTres.setPower(0);
+            }
         }
     }
 }
