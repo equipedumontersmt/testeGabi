@@ -16,6 +16,11 @@ public class testeNovaColeta extends LinearOpMode {
     DcMotor rodaUm;
     DcMotor rodaDois;
 
+    DcMotor direitaTras;
+    DcMotor direitaFrente;
+    DcMotor esquerdaFrente;
+    DcMotor esquerdaTras;
+
     CRServo heliceUm;
     CRServo heliceDois;
     CRServo heliceTres;
@@ -29,6 +34,21 @@ public class testeNovaColeta extends LinearOpMode {
 
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
+
+        direitaTras = hardwareMap.get(DcMotor.class, "direitaTras");
+        direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente");
+        esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente");
+        esquerdaTras= hardwareMap.get(DcMotor.class, "esquerdaTras");
+
+        direitaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        direitaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        esquerdaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        esquerdaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        esquerdaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
+        direitaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
+        esquerdaTras.setDirection(DcMotorSimple.Direction.FORWARD);
+        direitaTras.setDirection(DcMotorSimple.Direction.REVERSE);
 
         rodaUm = hardwareMap.get(DcMotor.class, "rodaUm");
         rodaDois = hardwareMap.get(DcMotor.class, "rodaDois");
@@ -46,6 +66,11 @@ public class testeNovaColeta extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
+
+            direitaTras.setPower(gamepad1.left_stick_y + (gamepad1.left_stick_x) + (-gamepad1.right_trigger) + (gamepad1.left_trigger));
+            direitaFrente.setPower(gamepad1.left_stick_y + (gamepad1.left_stick_x) + (gamepad1.right_trigger) + (-gamepad1.left_trigger));
+            esquerdaFrente.setPower(gamepad1.left_stick_y + (-gamepad1.left_stick_x) + (-gamepad1.right_trigger) + (gamepad1.left_trigger));
+            esquerdaTras.setPower(gamepad1.left_stick_y + (-gamepad1.left_stick_x) + (gamepad1.right_trigger) + (-gamepad1.left_trigger));
 
             if (gamepad1.y) {
                 rodaUm.setPower(-1);
