@@ -19,10 +19,10 @@ public class testesOdometria extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        direitaTras = hardwareMap.get(DcMotor.class, "direitaTras"); //robertoAugusto
-        direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente"); //pedrodivo
-        esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente"); //gabidiva
-        esquerdaTras = hardwareMap.get(DcMotor.class, "esquerdaTras");  //felipaoooo
+        direitaTras = hardwareMap.get(DcMotor.class, "direitaTras");
+        direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente");
+        esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente");
+        esquerdaTras = hardwareMap.get(DcMotor.class, "esquerdaTras");
 
         encoderLeft = esquerdaTras;
         encoderRight = direitaFrente;
