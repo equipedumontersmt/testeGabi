@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp
+@TeleOp (name = "prototipoUm", group = "Robot")
 public class prototipoUm extends LinearOpMode {
 
     DcMotor direitaTras;

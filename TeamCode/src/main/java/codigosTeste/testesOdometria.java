@@ -5,14 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp
+@TeleOp (name = "testesOdometria", group = "Robot")
 public class testesOdometria extends LinearOpMode {
 
     DcMotor direitaTras;
     DcMotor direitaFrente;
     DcMotor esquerdaFrente;
     DcMotor esquerdaTras;
-    public static int poder = 1;
     DcMotor encoderLeft;
     DcMotor encoderRight;
     DcMotor encoderAux;
@@ -20,10 +19,10 @@ public class testesOdometria extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        direitaTras = hardwareMap.get(DcMotor.class, "direitaTras"); //robertoAugusto
-        direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente"); //pedrodivo
-        esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente"); //gabidiva
-        esquerdaTras = hardwareMap.get(DcMotor.class, "esquerdaTras");  //felipaoooo
+        direitaTras = hardwareMap.get(DcMotor.class, "direitaTras");
+        direitaFrente = hardwareMap.get(DcMotor.class, "direitaFrente");
+        esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente");
+        esquerdaTras = hardwareMap.get(DcMotor.class, "esquerdaTras");
 
         encoderLeft = esquerdaTras;
         encoderRight = direitaFrente;

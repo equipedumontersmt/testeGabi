@@ -9,9 +9,9 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "testeNovaColeta", group = "Robot")
+@TeleOp(name = "testeDeposito", group = "Robot")
 @Config
-public class testeNovaColeta extends LinearOpMode {
+public class testeDeposito extends LinearOpMode {
 
     DcMotor rodaUm;
     DcMotor rodaDois;

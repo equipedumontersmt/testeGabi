@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp
-public class testegabioficial extends LinearOpMode {
+@TeleOp(name = "movimento", group = "Robot")
+public class movimento extends LinearOpMode {
 
     DcMotor direitaTras;
     DcMotor direitaFrente;
