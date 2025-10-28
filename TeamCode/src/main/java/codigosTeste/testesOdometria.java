@@ -38,7 +38,6 @@ public class testesOdometria extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
 
-
             direitaTras.setPower(gamepad1.left_stick_y);
             direitaFrente.setPower(gamepad1.left_stick_y);
             esquerdaFrente.setPower(gamepad1.left_stick_y);
