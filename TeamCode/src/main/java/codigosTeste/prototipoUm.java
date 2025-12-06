@@ -19,7 +19,6 @@ public class prototipoUm extends LinearOpMode {
     CRServo servoUm;
     CRServo servoDois;
     CRServo servoTres;
-    CRServo servoQuatro;
 
     DcMotor encoderLeft;
     DcMotor encoderRight;
@@ -43,17 +42,16 @@ public class prototipoUm extends LinearOpMode {
         servoUm = hardwareMap.get(CRServo.class, "servoUm");
         servoDois = hardwareMap.get(CRServo.class, "servoDois");
         servoTres = hardwareMap.get(CRServo.class, "servoTres");
-        servoQuatro = hardwareMap.get(CRServo.class, "servoQuatro");
 
         direitaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         direitaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         esquerdaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         esquerdaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        esquerdaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
-        direitaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
+        esquerdaFrente.setDirection(DcMotorSimple.Direction.FORWARD);
+        direitaFrente.setDirection(DcMotorSimple.Direction.FORWARD);
         esquerdaTras.setDirection(DcMotorSimple.Direction.FORWARD);
-        direitaTras.setDirection(DcMotorSimple.Direction.REVERSE);
+        direitaTras.setDirection(DcMotorSimple.Direction.FORWARD);
 
         rodaUm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rodaDois.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -61,12 +59,11 @@ public class prototipoUm extends LinearOpMode {
         servoUm.setDirection(DcMotorSimple.Direction.REVERSE);
         servoDois.setDirection(DcMotorSimple.Direction.REVERSE);
         servoTres.setDirection(DcMotorSimple.Direction.FORWARD);
-        servoQuatro.setDirection(DcMotorSimple.Direction.FORWARD);
 
         waitForStart();
         while (opModeIsActive()) {
 
-            direitaTras.setPower(gamepad1.left_stick_y + (gamepad1.left_stick_x) + (-gamepad1.right_trigger) + (gamepad1.left_trigger));
+            direitaTras.setPower(-gamepad1.left_stick_y + (-gamepad1.left_stick_x) + (gamepad1.right_trigger) + (-gamepad1.left_trigger));
             direitaFrente.setPower(gamepad1.left_stick_y + (gamepad1.left_stick_x) + (gamepad1.right_trigger) + (-gamepad1.left_trigger));
             esquerdaFrente.setPower(gamepad1.left_stick_y + (-gamepad1.left_stick_x) + (-gamepad1.right_trigger) + (gamepad1.left_trigger));
             esquerdaTras.setPower(gamepad1.left_stick_y + (-gamepad1.left_stick_x) + (gamepad1.right_trigger) + (-gamepad1.left_trigger));
@@ -80,12 +77,19 @@ public class prototipoUm extends LinearOpMode {
                 servoUm.setPower(1);
                 servoDois.setPower(1);
                 servoTres.setPower(1);
-                servoQuatro.setPower(1);
+
             } else {
                 servoUm.setPower(0);
                 servoDois.setPower(0);
                 servoTres.setPower(0);
-                servoQuatro.setPower(0);
+            }
+            if (gamepad1.x) {
+                rodaUm.setPower(1);
+                rodaDois.setPower(1);
+
+            } else {
+                rodaUm.setPower(0);
+                rodaDois.setPower(0);
             }
         }
     }
