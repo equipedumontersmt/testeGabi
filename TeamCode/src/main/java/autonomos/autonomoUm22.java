@@ -1,4 +1,4 @@
-package codigosTeste;
+package autonomos;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;

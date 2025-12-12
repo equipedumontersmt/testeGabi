@@ -1,4 +1,4 @@
-package codigosTeste;
+package autonomos;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -88,7 +88,7 @@ public class autonomoSemIMU extends LinearOpMode {
             telemetryAprilTag();
             telemetry.update();
 
-            moveForward("1.0","1500");
+            moveReverse("1.0","1500");
             sleep(5000);
             turnRight(0.5, 40);
 
@@ -147,6 +147,15 @@ public class autonomoSemIMU extends LinearOpMode {
         sleep(time);
         stopAll();
     }
+    private void moveReverse(String power, String time) {
+        esquerdaFrente.setPower(-1);
+        direitaFrente.setPower(-1);
+        esquerdaTras.setPower(-1);
+        direitaTras.setPower(-1);
+        sleep(60);
+        stopAll();
+    }
+
 
     private void stopAll() {
         esquerdaFrente.setPower(0);

@@ -1,89 +1,98 @@
 package codigosTeste;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import android.util.Size;
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@TeleOp
-public class testeApriltag extends LinearOpMode {
+public class testeApriltag extends OpMode {
 
-    private static final boolean USE_WEBCAM = true;
-    private AprilTagProcessor aprilTag;
+    private AprilTagProcessor aprilTagProcessor;
     private VisionPortal visionPortal;
 
-    @Override
-    public void runOpMode() {
-        initAprilTag();
+    private List<AprilTagDetection> detectedTags = new ArrayList<>();
 
-        telemetry.addData(">", "Touch START to begin");
-        telemetry.update();
+    private Telemetry telemetry;
 
+    public void init(HardwareMap hwmap, Telemetry telemetry) {
+        this.telemetry = telemetry;
 
-
-        waitForStart();
-
-        if (opModeIsActive()) {
-            while (opModeIsActive()) {
-                telemetryAprilTag();
-                telemetry.update();
-
-
-
-
-            }
-        }
-
-        visionPortal.close();
-    }
-
-    private void initAprilTag() {
-        aprilTag = new AprilTagProcessor.Builder().build();
+        aprilTagProcessor = new AprilTagProcessor.Builder()
+                .setDrawTagID(true)
+                .setDrawTagOutline(true)
+                .setDrawAxes(true)
+                .setDrawCubeProjection(true)
+                .setOutputUnits(DistanceUnit.CM, AngleUnit.DEGREES)
+                .build();
 
         VisionPortal.Builder builder = new VisionPortal.Builder();
-        if (USE_WEBCAM) {
-            builder.setCamera(hardwareMap.get(WebcamName.class, "CAM"));
-        } else {
-            builder.setCamera(BuiltinCameraDirection.BACK);
-        }
+        builder.setCamera(hwmap.get(WebcamName.class,"camera"));
+        builder.setCameraResolution(new Size(640, 480));
+        builder.addProcessor(aprilTagProcessor);
 
-        builder.addProcessor(aprilTag);
         visionPortal = builder.build();
     }
 
-    private void telemetryAprilTag() {
-        List<AprilTagDetection> currentDetections = aprilTag.getDetections();
-        telemetry.addData("# AprilTags Detected", currentDetections.size());
+    public void update() {
+        detectedTags = aprilTagProcessor.getDetections();
+    }
 
-        for (AprilTagDetection detection : currentDetections) {
-            if (detection.metadata != null) {
-                if (detection.id == 21) {
-                    telemetry.addData("TAG", "21");
-                }
-                else if (detection.id == 22) {
-                    telemetry.addData("TAG", "22");
-                }
-                else if (detection.id == 23) {
-                    telemetry.addData("TAG", "23");
-                }
-            } else {
-                telemetry.addData("TAG", "Não");
+    public List<AprilTagDetection> getDetectedTags() {
+
+        return detectedTags;
+    }
+
+    public void displayDetectionTelemetry(AprilTagDetection detectedId) {
+        if (detectedId == null) {return;}
+        if (detectedId.metadata != null) {
+            telemetry.addLine(String.format("\n==== (ID %d) %s", detectedId.id, detectedId.metadata.name));
+            telemetry.addLine(String.format("XYZ %6.1f %6.1f %6.1f  (inch)", detectedId.ftcPose.x, detectedId.ftcPose.y, detectedId.ftcPose.z));
+            telemetry.addLine(String.format("PRY %6.1f %6.1f %6.1f  (deg)", detectedId.ftcPose.pitch, detectedId.ftcPose.roll, detectedId.ftcPose.yaw));
+            telemetry.addLine(String.format("RBE %6.1f %6.1f %6.1f  (inch, deg, deg)", detectedId.ftcPose.range, detectedId.ftcPose.bearing, detectedId.ftcPose.elevation));
+        } else {
+            telemetry.addLine(String.format("\n==== (ID %d) Unknown", detectedId.id));
+            telemetry.addLine(String.format("Center %6.0f %6.0f   (pixels)", detectedId.center.x, detectedId.center.y));
+        }
+
+    }
+
+    public AprilTagDetection getTagBySpecificId(int id) {
+        for (AprilTagDetection detection : detectedTags) {
+
+            if (detection.id == id) {
+                return detection;
             }
         }
+        return null;
     }
 
-    public void init(HardwareMap hardwareMap) {
+    @Override
+    public void init() {
 
+    }
+
+    @Override
+    public void loop() {
+
+    }
+
+    public void stop() {
+        if (visionPortal != null) {
+            visionPortal.close();
+        }
     }
 }
-
 
 
 
