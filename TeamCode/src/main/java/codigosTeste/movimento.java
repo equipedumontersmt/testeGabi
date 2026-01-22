@@ -25,8 +25,8 @@ public class movimento extends LinearOpMode {
         esquerdaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         esquerdaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        esquerdaFrente.setDirection(DcMotorSimple.Direction.FORWARD);
-        direitaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
+        esquerdaFrente.setDirection(DcMotorSimple.Direction.REVERSE);
+        direitaFrente.setDirection(DcMotorSimple.Direction.FORWARD);
         esquerdaTras.setDirection(DcMotorSimple.Direction.FORWARD);
         direitaTras.setDirection(DcMotorSimple.Direction.FORWARD);
 

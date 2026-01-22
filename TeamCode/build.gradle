@@ -25,4 +25,6 @@ android {
 
 dependencies {
     implementation project(':FtcRobotController')
+    implementation 'com.github.gobilda:pinpoint:1.0.0'
+
 }
