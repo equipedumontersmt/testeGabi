@@ -4,6 +4,7 @@ import android.util.Size;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
@@ -32,6 +33,12 @@ public class prototipoTres extends LinearOpMode {
     DcMotor esquerdaFrente;
     DcMotor esquerdaTras;
 
+    DcMotor motorDeposito;
+    DcMotor motorColeta;
+
+    CRServo servoUm;
+    CRServo servoDois;
+
     @Override
     public void runOpMode() {
 
@@ -40,15 +47,27 @@ public class prototipoTres extends LinearOpMode {
         esquerdaFrente = hardwareMap.get(DcMotor.class, "esquerdaFrente");
         esquerdaTras= hardwareMap.get(DcMotor.class, "esquerdaTras");
 
+        motorDeposito = hardwareMap.get(DcMotor.class,"motorDeposito");
+        motorColeta = hardwareMap.get(DcMotor.class,"motorColeta");
+
+        servoUm = hardwareMap.get(CRServo.class,"servoUm");
+        servoDois = hardwareMap.get(CRServo.class,"servoDois");
+
         direitaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         direitaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         esquerdaFrente.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         esquerdaTras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        motorDeposito.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorColeta.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         esquerdaFrente.setDirection(DcMotorSimple.Direction.FORWARD);
         direitaFrente.setDirection(DcMotorSimple.Direction.FORWARD);
         esquerdaTras.setDirection(DcMotorSimple.Direction.FORWARD);
         direitaTras.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        motorDeposito.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorColeta.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
         initAprilTag();
